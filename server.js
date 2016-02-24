@@ -5,7 +5,7 @@ var express        = require('express'),
     app            = express(),
     session        = require('express-session'),
     methodOverride = require('method-override'),
-    mongoUri       = process.env.MONGOLAB_URI || 'mongodb://localhost/grocery_app_dev',
+    mongoUri       = process.env.MONGOLAB_URI || 'mongodb://localhost/yearbook_app',
     passport       = require('passport');
 
 mongoose.connect(mongoUri);
@@ -42,6 +42,8 @@ app.get("/", function(req, res){
   res.redirect("/users");
 });
 
-app.listen(port, function() {
-    console.log('Running on port ' + port);
-});
+mongoose.connection.once('open', function() {
+    app.listen(port, function() {
+        console.log('Running on port ' + port);
+    });
+})
