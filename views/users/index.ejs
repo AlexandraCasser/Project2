@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link href='https://fonts.googleapis.com/css?family=Graduate' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Noticia+Text' rel='stylesheet' type='text/css'>
+			<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		  		<script type="text/javascript" src="/js/index.js"></script>
+					<title>Your Yearbook</title>
+<!-- ===================== -->
+<!-- Styling -->
+<!-- ===================== -->
+	<style>
+		body {
+    	background-color: black;
+    	text-align: center;
+			}
+		h1 {
+		  font-family: 'Graduate', cursive;
+		  margin-left: 40px;
+			} 
+
+	</style>
+</head>
+
+<body>
+<br>
+
+<!-- ===================== -->
+<!-- List of users -->
+<!-- ===================== -->
+
+<!-- <div id="imageDiv" style="background-image: url(css/images/footballPNG.png); display: block; float: left; height: 30rem;height: 30rem; width: 500px; background-repeat: no-repeat;"></div> -->
+<div id="imageDiv" style="float: left;"> <img src="css/images/footballPNG.png" width="100%"></div>
+
+<div id="dataset-select-container" style="float: right; ">
+	<p id="users-title"></p>
+		<select id="dataset-select">
+			<option value="no id" id="0" />   Pick A User </option>
+				<% for (var i = 0; i < users.length; i++) { %>
+				<option id="<%= users[i].id %>" value="<%= users[i].id %>"/><%= users[i].username %></option>
+				<% }%>
+		</select>
+	
+
+	<div id="signInContainer">
+		<% if (login) { %>
+
+<!-- ===================== -->
+<!-- Logged in links -->
+<!-- ===================== -->
+			<a  href="/users/validate">
+			<button label="Your Profile" name="profile" style="margin-bottom: 1rem; margin-top: 1rem">Your Profile</button></a>
+				<br>
+			<a style="color: white;" href="/users/logout">
+			 	<button label="Logout" name="logout" style="margin-bottom: 1rem">Logout</button>
+			 	</a>
+		<% } else { %>	
+
+<!-- ===================== -->
+<!-- Log in -->
+<!-- ===================== -->
+		<p style="color: #FF8C00; font-family: 'Graduate', cursive; font-size: 1rem">Log In</p>
+			<form action="/users/login" method="POST">
+				<input type="text" name="email" placeholder="email">
+					<input type="password" name="password" placeholder="password">
+						<input type="submit">
+			</form> 
+
+<!-- ===================== -->
+<!-- Sign up -->
+<!-- ===================== -->
+		<p style="color: #FF8C00; font-family: 'Graduate', cursive; font-size: 1rem">Sign Up</p>
+			<form action="/users" method="POST">
+				<input type="text" name="username" placeholder="username">
+				<input type="text" name="email" placeholder="email">
+				<input type="password" name="password" placeholder="password">
+				<input type="submit">
+			</form>
+		<% } %>
+	</div> <!-- end signInContainer -->
+</div> <!-- end dataset-select -->
+
+<!-- ===================== -->
+<!-- Footer -->
+<!-- ===================== -->
+	<div id="footerDiv" style=" position: fixed;
+    bottom: 0; width: 98%; margin: 0 auto;">
+		<h1 style="text-align: right; vertical-align: bottom; color: #FF8C00">Meeseeks Yearbook 2016 </h1>
+		<div style="height: 40px; background-color: #FF8C00"></div>
+		<div style="height: 40px; background-color: black"></div>
+		<div style="height: 40px; background-color: #FF8C00"></div>
+		<div style="height: 40px; background-color: black"></div>
+	</div>
+	
+</body>
+</html>

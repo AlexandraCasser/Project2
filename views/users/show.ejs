@@ -1,0 +1,97 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+    <link href='https://fonts.googleapis.com/css?family=Graduate' rel='stylesheet' type='text/css'>
+      <link href='https://fonts.googleapis.com/css?family=Noticia+Text' rel='stylesheet' type='text/css'>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+          <script type="text/javascript" src="/js/show.js"></script>
+</head>
+
+<!-- ==================== -->
+<!-- Inline CSS -->
+<!-- ==================== -->
+<body style="background-image: url(/css/images/red_lockers.jpg);background-size: cover; text-align: center;">
+
+  <!-- <%= usertrue %> -->
+
+<br>
+<br>
+<!-- ==================== -->
+<!-- Inline CSS for Text Container-->
+<!-- ==================== -->
+  <div id="container" style="background-color: #CDCDCD; opacity: .9; width: 45%; margin: 0 auto; border-radius: 25px; border-style: solid; border-width: 1px; border-color: black;">
+    
+
+<!-- ==================== -->
+<!-- Text Container-->
+<!-- ==================== -->
+  <div id="control-panel">
+    <div id="quotediv" style="color: #FF8C00">
+    <div id="header">
+
+      <h1 id="title" style="color: #FF8C00; font-family: 'Graduate', cursive; font-size: 3rem" > <%= user.username %> </h1>
+      </div>
+
+      <p style="font-family: 'Noticia Text', serif; font-size: 1rem">What would <%= user.username %>'s yearbook quote have been?</p>
+        <form action="/users/<%= user.id %>/addQuote" method="POST">
+          <input type="text" name="name" placeholder="name" style="margin-bottom: 1rem"/>
+            <br>
+              <textarea name="quote" cols="50" rows="10"></textarea>
+                <br>
+                  <input type="submit"/>
+        </form>
+    </div>
+
+<!-- ==================== -->
+<!-- Quotes -->
+<!-- ==================== -->
+    <div id="locations-container" style="color: #FF8C00">
+      <% for (var i=0; i < user.quotes.length; i++) { %>
+        <div class="location">
+          <p style="font-family: 'Noticia Text', serif; font-size: 1rem"><%= user.quotes[i].quote %> -<p><%= user.quotes[i].name %></p>
+      </div>
+        
+<!-- ==================== -->
+<!-- Delete Quotes Buttons -->
+<!-- ==================== -->
+    <form action="/users/<%= user.id %>/deletequote/<%= user.quotes[i].id %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE"/>
+        <% if (usertrue) { %>
+          <button id="delete-button">Delete This Quote</button>
+            <% } else { %>  
+              <% } %>
+        </form>
+      <% } %>
+    </div>
+
+<!-- ==================== -->
+<!-- Delete Your Profile Button -->
+<!-- ==================== -->
+    <% if (usertrue) { %>
+    <form action="/users/<%= user.id %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+        <button id="delete-button">Delete Your Profile</button>
+    </form>
+
+<!-- ==================== -->
+<!-- Edit Your Profile Button -->
+<!-- ==================== -->
+  </div>
+    <a href="/users/<%= user.id %>/editUser">
+      <button  label="Edit Your Profile" name="edit">Edit Your Profile</button></a>
+        <% } else { %>  
+
+     <% } %>
+
+<!-- ==================== -->
+<!-- Back to Index Button -->
+<!-- ==================== -->
+  <a href="/users">
+      <button label="Edit Your Profile" name="edit" style="margin-bottom: 1rem">Back to All Users</button>
+  </a>
+
+ </div>
+
+</body>
+</html>

@@ -1,13 +1,15 @@
 // requirements
 var express    = require('express'),
     router     = express.Router();
-    Quotes  = require('../models/quotes.js');
+    Quotes     = require('../models/quotes.js'),
+    logger     = require("morgan"),
+    passport   = require('passport'); 
 
 
 
 // INDEX
 router.get('/', function(req, res) {
-	Locations.find({}, function(err, data) {
+	Quotes.find({}, function(err, data) {
 		res.render('quotes/index.ejs', {
 			quotes: data
 		});

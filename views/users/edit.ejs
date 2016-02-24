@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href='https://fonts.googleapis.com/css?family=Graduate' rel='stylesheet' type='text/css'>
+	<title>Change Your Username</title>
+
+</head>
+<body style="background-image: url(http://i.huffpost.com/gen/1778649/thumbs/o-HIGH-SCHOOL-LOCKERS-facebook.jpg); text-align: center;">
+	 <form style="padding-top: 7rem;" action="/users/<%=user.id%>" method="POST">
+		  <div style="background: transparent;">
+		    <p style="color: #FF8C00; font-family: 'Graduate', cursive; font-size: 1rem">Type in your new user name.</p>
+          <input type="text" name="username" value="<%=user.username%>"/><br>
+            <input type="hidden" name="_method" value="PUT">
+      <br>
+          <input type="submit"/>
+      </div>
+  </form>
+</body>
+</html>
