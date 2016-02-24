@@ -5,10 +5,10 @@ var express        = require('express'),
     app            = express(),
     session        = require('express-session'),
     methodOverride = require('method-override'),
-    // mongoUri       = process.env.MONGOLAB_URI || 'mongodb://localhost/yearbook_app',
+    mongoUri       = process.env.MONGOLAB_URI || 'mongodb://localhost/yearbook_app',
     passport       = require('passport');
 
-// mongoose.connect(mongoUri);
+mongoose.connect(mongoUri);
 
 //Express
 app.use(express.static('public'));
@@ -41,9 +41,6 @@ app.use("/quotes", quotesController)
 app.get("/", function(req, res){
   res.redirect("/users");
 });
-
-var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost/yearbook_app';
-mongoose.connect(mongoUri);
 
 mongoose.connection.once('open', function() {
     app.listen(port, function() {
