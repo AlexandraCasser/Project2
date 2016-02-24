@@ -5,9 +5,10 @@ var express        = require('express'),
     app            = express(),
     session        = require('express-session'),
     methodOverride = require('method-override'),
+    var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost/grocery_app_dev';
     passport       = require('passport');
 
-mongoose.connect('mongodb://localhost/yearbook_app');
+mongoose.connect(mongoUri);
 
 //Express
 app.use(express.static('public'));
